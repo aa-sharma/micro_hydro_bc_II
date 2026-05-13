@@ -1,5 +1,6 @@
 ### MICRO-HYDROPOWER DESIGN PART II - GRID INTEGRATION & POWER SYSTEM MODELLING
-Distribution feeder impact study of a 100 kW Micro-Hydro Generator via load flow, voltage rise analysis, and reverse power flow check
+
+> The purpose of this project is to conduct a distribution feeder impact study of a 100 kW Micro-Hydro Generator (identified in part I of project) via load flow, voltage rise analysis, and reverse power flow check analysis
 
 ## System
 Micro-hydro → LV generator → transformer → distribution feeder → substation (grid)
