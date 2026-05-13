@@ -16,8 +16,11 @@ Modelling a simple radial feeder:
 Grid → 1 line → load → microhydro at midpoint or end
 
 Case 1: No generation (normal load flow)
+
 Case 2: Generator ON (low load)
+
 Case 3: Generator ON (high load)
+
 Case 4: Generator OFF
 
 # Assumptions
