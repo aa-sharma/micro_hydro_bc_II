@@ -96,9 +96,9 @@ class PowerFlowNetwork:
         print(f"========Generator========\n{self.net.sgen}\n")
 
     def print_output_summary(self):
-        print(f"Bus voltages\n{self.net.res_bus.vm_pu}")
-        print(f"Line Loading\n{self.net.res_line.loading_percent}")
-        print(f"Transformer\n{self.net.res_trafo.loading_percent}")
+        print(f"Bus voltages\n{self.net.res_bus.vm_pu}\n")
+        print(f"Line Loading\n{self.net.res_line.loading_percent}\n")
+        print(f"Transformer\n{self.net.res_trafo.loading_percent}\n")
 
     def plot_voltage(self,
                      title='Bus Voltage Profile',

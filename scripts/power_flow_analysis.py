@@ -8,10 +8,12 @@ import pandapower as pp
 from power_flow_network import PowerFlowNetwork
 from pandapower import shortcircuit
 
-def generator_off():
+
+def power_flow_generator_off():
     pfn_OFF = PowerFlowNetwork()
     pfn_OFF.full_config_setup()
     pfn_OFF.print_network_details()
+    pfn_OFF.plot_network()
     pfn_OFF.net.sgen["in_service"] = False
     pp.runpp(
         pfn_OFF.net,
@@ -22,10 +24,9 @@ def generator_off():
     )
     pfn_OFF.print_output_summary()
     pfn_OFF.plot_voltage(title="Bus Voltage Profile (Generator OFF)")
-    pfn_OFF.plot_network()
 
 
-def generator_on():
+def power_flow_generator_on():
     """Base Case"""
     pfn_ON = PowerFlowNetwork()
     pfn_ON.full_config_setup()
@@ -56,11 +57,13 @@ def generator_sensitivity():
         results.append(pfn_gen.net.res_bus.vm_pu.copy())
     print(results)
 
+
 def reverse_power_flow_check():
     # transformer loading:
     pfn_rv = PowerFlowNetwork()
     pfn_rv.full_config_setup()
     pfn_rv.res_trafo.loading_percent()
+
 
 def short_circuit_analysis():
     """
@@ -77,8 +80,8 @@ def short_circuit_analysis():
 
 
 if __name__ == "__main__":
-    generator_off()
-    # generator_on()
+    power_flow_generator_off()
+    # power_flow_generator_on()
     # generator_sensitivity()
     # reverse_power_flow_check()
     # short_circuit_analysis()
