@@ -26,6 +26,7 @@ def generator_off():
 
 
 def generator_on():
+    """Base Case"""
     pfn_ON = PowerFlowNetwork()
     pfn_ON.full_config_setup()
     pfn_ON.print_network_details()
