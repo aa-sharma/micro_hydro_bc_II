@@ -8,7 +8,7 @@ The grid integration loosely follows [BC Hydro's Distributed Generation Technica
 * 1 feeder (radial)
 * 3 loaded buses (representing residential/rural demand)
 * 1 generator bus (100kW micro-hydro)
-* aggregated loads
+* 1 transformer (steps voltage up from 480V to 12.47kV)
 
  <img src="topo.png" width="40%">
 
@@ -22,7 +22,7 @@ The grid integration loosely follows [BC Hydro's Distributed Generation Technica
 ### Generator Attributes
 The following attributes are assumed for the 100kW micro-hydro power plant:
 * Power Rating: 100kW
-* Voltage: 400V/480V (3-phase)
+* Voltage: 480V (3-phase)
 * Frequency: 60Hz (synchronized with local BC Hydro grid standards)
 * Generator Type: Asynchronous generator
 
