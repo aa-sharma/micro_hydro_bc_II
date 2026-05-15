@@ -22,6 +22,7 @@ def generator_off():
     )
     pfn_OFF.print_output_summary()
     pfn_OFF.plot_voltage(title="Bus Voltage Profile (Generator OFF)")
+    pp.plotting.simple_plot(pfn_OFF.net)
 
 
 def generator_on():
@@ -61,6 +62,11 @@ def reverse_power_flow_check():
     pfn_rv.res_trafo.loading_percent()
 
 def short_circuit_analysis():
+    """
+    Calculates minimal or maximal symmetrical short-circuit currents.
+    The calculation is based on the method of the equivalent voltage source according to DIN/IEC EN 60909
+    https://pandapower.readthedocs.io/en/latest/shortcircuit/run.html
+    """
     pfn_sc = PowerFlowNetwork()
     pfn_sc.full_config_setup()
     shortcircuit.calc_sc(pfn_sc.net, fault='3ph')
@@ -71,7 +77,7 @@ def short_circuit_analysis():
 
 if __name__ == "__main__":
     generator_off()
-    generator_on()
-    generator_sensitivity()
-    reverse_power_flow_check()
-    short_circuit_analysis()
+    # generator_on()
+    # generator_sensitivity()
+    # reverse_power_flow_check()
+    # short_circuit_analysis()
