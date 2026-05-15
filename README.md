@@ -8,17 +8,7 @@
 * 1 generator bus (100kW micro-hydro)
 * aggregated loads
 
-Structure:
-Slack (12.47 kV)
-   |
- Bus 1
-   |
- Bus 2
-   |
- Bus 3  ← 100 kW Micro-Hydro
-   |
- Bus 4 (load end)
-
+Structure
  <img src="topo.png" width="50%">
 
 ## Areas of Study
