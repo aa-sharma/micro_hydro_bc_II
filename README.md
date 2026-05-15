@@ -8,8 +8,14 @@
 * 1 generator bus (100kW micro-hydro)
 * aggregated loads
 
-
  <img src="topo.png" width="40%">
+
+### Design Simplifications and Assumptions
+* Constant power loads (PQ)
+* Typical line imepedance values
+* Balanced 3-phase system
+* Harmonics are ignored
+
 
 ## Areas of Study
 1. Power flow (Voltage impact study)
@@ -29,8 +35,3 @@ Case 3: Partial generation (30%, 60%)
 Simulations performed in python using pandapower
 https://www.pandapower.org/start/
 
-### Design Simplifications and Assumptions
-* Constant power loads (PQ)
-* Typical line imepedance values
-* Balanced 3-phase system
-* Harmonics are ignored
