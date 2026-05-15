@@ -8,7 +8,6 @@
 * 1 generator bus (100kW micro-hydro)
 * aggregated loads
 
-Structure
 
  <img src="topo.png" width="40%">
 
