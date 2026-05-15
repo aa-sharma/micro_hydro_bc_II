@@ -7,4 +7,7 @@ Bus 1 ───────── radial feeder ───────── Bus 
         ▼             ▼
      Bus 2        Bus 3 (DG injection point)
                       │
+		  Step-up Transformer
+		  0.48 kV / 12.47 kV
+		      |
                 100 kW micro-hydro (sgen)
