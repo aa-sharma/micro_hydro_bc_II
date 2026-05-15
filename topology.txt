@@ -1,11 +1,10 @@
-[GRID SLACK]
-     |
-  [25 kV feeder line]
-     |
- [Transformer]
-     |
-  LV bus (0.4 kV)
-     |
-  Loads (distributed)
-     |
-  Micro-hydro (sgen)
+Slack (External Grid, 12.47 kV swing bus)
+        │
+        │  (Line impedance)
+        ▼
+Bus 1 ───────── radial feeder ───────── Bus 4
+        │             │
+        ▼             ▼
+     Bus 2        Bus 3 (DG injection point)
+                      │
+                100 kW micro-hydro (sgen)
