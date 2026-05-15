@@ -1,5 +1,5 @@
 ### MICRO-HYDROPOWER DESIGN PART II - GRID INTEGRATION & POWER SYSTEM MODELLING
-> This projects build on [Part I - Site Assessment]([URL](https://github.com/aa-sharma/micro_hydro_bc)). We assume a capacity of 100kW for the candidate site and conduct a distribution feeder impact study of through load flow, voltage rise analysis, and reverse power flow check analysis
+> This projects build on [Part I - Site Assessment](https://github.com/aa-sharma/micro_hydro_bc). We assume a capacity of 100kW for the candidate site and conduct a distribution feeder impact study of through load flow, voltage rise analysis, and reverse power flow check analysis
 
 ## System
 Micro-hydro → LV generator → transformer → distribution feeder → substation (grid)
