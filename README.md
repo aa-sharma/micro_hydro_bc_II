@@ -1,4 +1,4 @@
-### MICRO-HYDROPOWER DESIGN PART II - GRID INTEGRATION & POWER SYSTEM MODELLING
+# MICRO-HYDROPOWER DESIGN PART II - GRID INTEGRATION & POWER SYSTEM MODELLING
 > This projects build on [Part I - Site Assessment](https://github.com/aa-sharma/micro_hydro_bc) where we identified candidate locations for a micro-hydropower site in rural Southwest British Columbia. In this project, we assume a capacity of 100kW for the candidate site and conduct a distribution feeder impact study through load flow, voltage rise analysis, and reverse power flow check analysis.
 
 ## System
@@ -10,7 +10,7 @@ Micro-hydro → LV generator → transformer → distribution feeder → substat
 3. Transformer behaviour
 4. Short-circuit analysis
 
-# Power Flow
+## Power Flow
 Modelling a simple radial feeder:
 Grid → 1 line → load → microhydro at midpoint or end
 
@@ -22,7 +22,7 @@ Case 3: Generator ON (high load)
 
 Case 4: Generator OFF
 
-# Parameters & Assumptions
+## Parameters & Assumptions
 Generator:
 * 100 kW (0.1 MW)
 * 0.48 kV
@@ -43,6 +43,6 @@ Load
 Grid
 * infinite bus (slack)
 
-# Simulation
+## Simulation
 Simulations performed in python using pandapower
 https://www.pandapower.org/start/
