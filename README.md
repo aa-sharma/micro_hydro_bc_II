@@ -35,7 +35,7 @@ The following attributes are assumed for the 100kW micro-hydro power plant:
 
 <img src="power-flow-equations1.png" width="75%">
 
-<img src="power-flow-problem-equations2.png" width="75%">
+<img src="power-flow-equations2.png" width="75%">
 
 
 Case 1: Generator OFF (baseline voltage profile)
