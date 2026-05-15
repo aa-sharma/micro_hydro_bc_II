@@ -12,6 +12,21 @@ The grid integration loosely follows [BC Hydro's Distributed Generation Technica
 
  <img src="topo.png" width="40%">
 
+
+Slack (12.47 kV Grid)
+        |
+   Feeder Bus
+        |
+   -------------------------
+   |          |           |
+ Load 1     Load 2      Load 3
+                        |
+                 Step-up Transformer
+                 0.48 kV / 12.47 kV
+                        |
+                100 kW Hydro Generator
+                
+
 ### Design Simplifications and Assumptions
 * Constant power loads (PQ)
 * Typical line imepedance values
