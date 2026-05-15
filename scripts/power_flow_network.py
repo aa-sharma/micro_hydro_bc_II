@@ -6,6 +6,7 @@ Network Definition
 """
 
 import pandapower as pp
+import matplotlib.pyplot as plt
 
 
 VN_KV = 12.47
@@ -54,6 +55,21 @@ class PowerFlowNetwork:
         pp.create_line_from_parameters(self.net, self.bus3, self.bus4, 1.0,
                                        R_OHM_PER_KM, X_OHM_PER_KM, C_NF_PER_KM, MAX_I_KA)
 
+        # Transformer
+        # pp.create_transformer_from_parameters(
+        #     self.net,
+        #     hv_bus=bus_slack,
+        #     lv_bus=bus_lv,
+        #     sn_mva=0.5,
+        #     vn_hv_kv=25,
+        #     vn_lv_kv=0.4,
+        #     vkr_percent=1.0,
+        #     vk_percent=6.0,
+        #     pfe_kw=0.5,
+        #     i0_percent=0.1,
+        #     name="25kV/400V Transformer"
+        # )
+
         # Loads
         pp.create_load(self.net, self.bus2, p_mw=0.04, q_mvar=0.015)
         pp.create_load(self.net, self.bus3, p_mw=0.03, q_mvar=0.01)
@@ -83,3 +99,44 @@ class PowerFlowNetwork:
         print(f"Bus voltages\n{self.net.res_bus.vm_pu}")
         print(f"Line Loading\n{self.net.res_line.loading_percent}")
         print(f"Transformer\n{self.net.res_trafo.loading_percent}")
+
+    def plot_voltage(self,
+                     title='Bus Voltage Profile',
+                     xlabel='Bus Index',
+                     ylabel='Voltage (p.u.)'):
+        plt.plot(self.net.res_bus.vm_pu.values, marker='o')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid()
+        plt.show()
+
+    def plot_psse_style(self):
+        plt.style.use('default')
+        plt.rcParams['figure.facecolor'] = 'white'
+        plt.rcParams['axes.facecolor'] = 'white'
+        plt.rcParams['axes.edgecolor'] = 'black'
+        plt.rcParams['axes.grid'] = True
+        plt.rcParams['grid.color'] = '0.85'
+        plt.rcParams['grid.linestyle'] = '-'
+        plt.rcParams['font.size'] = 11
+
+    def plot_voltage_profile(base,
+                             dg_on,
+                             bus_labels=["Slack", "Bus1", "Bus2", "Bus3", "Bus4"],
+                             xlabel='Bus',
+                             ylabel='Voltage (p.u.)',
+                             title='Voltage Profile Comparison'):
+        x = range(len(base))
+        plt.figure(figsize=(8,4))
+        plt.plot(x, base, label="No DG", linewidth=2)
+        plt.plot(x, dg_on, label="100 kW DG", linewidth=2, linestyle="--")
+        plt.axhline(1.05, color='r', linestyle=':', linewidth=1)
+        plt.axhline(0.95, color='r', linestyle=':', linewidth=1)
+        plt.xticks(x, bus_labels)
+        plt.ylabel(ylabel)
+        plt.xlabel(xlabel)
+        plt.title(title)
+        plt.legend()
+        plt.tight_layout()
+        plt.show()
