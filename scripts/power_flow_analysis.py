@@ -83,35 +83,24 @@ class PowerFlowNetwork:
 
 
 
+# CASE 1: Generator OFF
+pfn_OFF = PowerFlowNetwork()
+pfn_OFF.full_config_setup()
+pfn_OFF.print_network_details()
+pfn_OFF.net.sgen["in_service"] = False
+pp.runpp(
+    pfn_OFF.net,
+    algorithm="nr",
+    init="flat",
+    max_iteration=30,
+    enforce_q_lims=True
+)
+pfn_OFF.print_output_summary()
 
 
 
 
 
-pfn = PowerFlowNetwork()
-pfn.full_config_setup()
-print(pfn.net.res_bus.vm_pu)
-pfn.print_network_details()
 
 
 
-
-
-
-
-
-# # ============================== CASES ==============================
-
-# # CASE 1: Generator OFF
-# net.sgen["in_service"] = False
-# pp.runpp(
-#     net,
-#     algorithm="nr",
-#     init="flat",
-#     max_iteration=30,
-#     enforce_q_lims=True
-# )
-
-# print(f"Bus voltages\n{net.res_bus.vm_pu}")
-# print(f"Line Loading\n{net.res_line.loading_percent}")
-# print(f"Transformer\n{net.res_trafo.loading_percent}")
