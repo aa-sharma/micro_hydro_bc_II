@@ -4,7 +4,7 @@
 ## System Definition
 * 1 slack bus (utility substation)
 * 1 feeder (radial)
-* 4-6 loaded buses (representing residential/rural demand)
+* 3-5 loaded buses (representing residential/rural demand)
 * 1 generator bus (100kW micro-hydro)
 * aggregated loads
 
