@@ -22,7 +22,7 @@ def generator_off():
     )
     pfn_OFF.print_output_summary()
     pfn_OFF.plot_voltage(title="Bus Voltage Profile (Generator OFF)")
-    pp.plotting.simple_plot(pfn_OFF.net)
+    pfn_OFF.plot_network()
 
 
 def generator_on():

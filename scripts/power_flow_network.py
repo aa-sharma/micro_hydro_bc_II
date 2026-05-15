@@ -140,3 +140,18 @@ class PowerFlowNetwork:
         plt.legend()
         plt.tight_layout()
         plt.show()
+
+    def plot_network(self):
+         """Plot network
+         https://pandapower.readthedocs.io/en/latest/plotting/matplotlib/simple_plot.html"""
+         pp.plotting.simple_plot(self.net,
+                                 line_width=2,
+                                 bus_size=2,
+                                 ext_grid_size=5,
+                                 trafo_size=2,
+                                 plot_loads=True,
+                                 plot_gens=True,
+                                 plot_sgens=True,
+                                 load_size=1,
+                                 gen_size=2,
+                                 sgen_size=5)
