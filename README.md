@@ -26,13 +26,12 @@ Slack (12.47 kV)
 4. Short-circuit analysis
 
 ## Power Flow
-Case 1: No generation (normal load flow)
+Case 1: Generator OFF (baseline voltage profile)
 
-Case 2: Generator ON (low load)
+Case 2: Generator ON (100kW generation)
 
-Case 3: Generator ON (high load)
+Case 3: Partial generation (30%, 60%)
 
-Case 4: Generator OFF
 
 ## Simulation
 Simulations performed in python using pandapower
