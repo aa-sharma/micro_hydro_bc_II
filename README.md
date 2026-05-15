@@ -32,6 +32,5 @@ Case 3: Partial generation (30%, 60%)
 
 
 ## Simulation
-Simulations performed in python using pandapower
-https://www.pandapower.org/start/
+Simulations performed in python using [pandapower](https://pandapower.readthedocs.io/en/latest/powerflow/ac.html)
 
