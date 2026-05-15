@@ -1,14 +1,11 @@
- Micro-Hydro Generator (100 kW)
-                        |
-                 0.48 kV bus
-                        |
-                 Step-up Transformer
-                 0.48 / 12.47 kV
-                        |
-                12.47 kV Feeder Bus
-                        |
-               5 km Distribution Line
-                        |
-                Load Bus (residential load)
-                        |
-               Slack Bus (Utility Grid)
+[GRID SLACK]
+     |
+  [25 kV feeder line]
+     |
+ [Transformer]
+     |
+  LV bus (0.4 kV)
+     |
+  Loads (distributed)
+     |
+  Micro-hydro (sgen)
