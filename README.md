@@ -1,8 +1,16 @@
 # MICRO-HYDROPOWER DESIGN PART II - GRID INTEGRATION & POWER SYSTEM MODELLING
 > This projects build on [Part I - Site Assessment](https://github.com/aa-sharma/micro_hydro_bc) where we identified candidate locations for a micro-hydropower site in rural Southwest British Columbia. In this project, we assume a capacity of 100kW for the candidate site and conduct a distribution feeder impact study through load flow, voltage rise analysis, and reverse power flow check analysis.
 
-## System
-Micro-hydro → LV generator → transformer → distribution feeder → substation (grid)
+## System Definition
+* 1 slack bus (utility substation, 25-69kV)
+* 1 feeder (radial)
+* 1 step-down transformer (12.47kV -> 0.4kV)
+* 3-6 loaded buses (representing residential/rural demand)
+* 1 generator bus (100kW micro-hydro LV side)
+
+ASSUMPTIONS
+1. Substation: 25kV distribution feeder
+2. Micro-hydro interconnect: 12.47kV
 
 ## Areas of Study
 1. Power flow (Voltage impact study)
