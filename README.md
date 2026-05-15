@@ -54,3 +54,9 @@ Grid
 ## Simulation
 Simulations performed in python using pandapower
 https://www.pandapower.org/start/
+
+Design Simplifications and Assumptions
+* Constant power loads (PQ)
+* Typical line imepedance values
+* Balanced 3-phase system
+* Harmonics are ignored
