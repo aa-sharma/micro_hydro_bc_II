@@ -9,7 +9,8 @@
 * aggregated loads
 
 Structure
- <img src="topo.png" width="50%">
+
+ <img src="topo.png" width="30%">
 
 ## Areas of Study
 1. Power flow (Voltage impact study)
