@@ -10,7 +10,7 @@
 
 Structure
 
- <img src="topo.png" width="30%">
+ <img src="topo.png" width="40%">
 
 ## Areas of Study
 1. Power flow (Voltage impact study)
