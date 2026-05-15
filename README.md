@@ -19,6 +19,8 @@ Slack (12.47 kV)
    |
  Bus 4 (load end)
 
+ <img src="topo.png" width="50%">
+
 ## Areas of Study
 1. Power flow (Voltage impact study)
 2. Reverse power flow
