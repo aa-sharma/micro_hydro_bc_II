@@ -16,6 +16,13 @@
 * Balanced 3-phase system
 * Harmonics are ignored
 
+### Generator Attributes
+The following attributes are assumed for the 100kW micro-hydro power plant:
+* Power Rating: 100kW
+* Voltage: 400V/480V (3-phase)
+* Frequency: 60Hz (synchronized with local BC Hydro grid standards)
+* Generator Type: Asynchronous generator
+
 
 ## Areas of Study
 1. Power flow (Voltage impact study)
