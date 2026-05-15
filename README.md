@@ -31,6 +31,8 @@ The following attributes are assumed for the 100kW micro-hydro power plant:
 4. Short-circuit analysis
 
 ## Power Flow
+<img src="power-flow-problem-table.png" width="50%">
+
 Case 1: Generator OFF (baseline voltage profile)
 
 Case 2: Generator ON (100kW generation)
