@@ -5,6 +5,7 @@ May 2026
 """
 import pandapower as pp
 
+
 VN_KV = 12.47
 R_OHM_PER_KM = 0.40
 X_OHM_PER_KM = 0.30
@@ -12,9 +13,9 @@ C_NF_PER_KM = 10
 MAX_I_KA = 0.20
 VM_PU = 1.02
 
+
 class PowerFlowNetwork:
-    def __init__(self, net=None, vn_kv=VN_KV):
-        self.net = net
+    def __init__(self, vn_kv=VN_KV):
         self.vn_kv = vn_kv
 
     def full_config_setup(self):
