@@ -9,5 +9,5 @@ Bus 1 ───────── radial feeder ───────── Bus 
                       │
 		  Step-up Transformer
 		  0.48 kV / 12.47 kV
-		      |
+		              |
                 100 kW micro-hydro (sgen)
