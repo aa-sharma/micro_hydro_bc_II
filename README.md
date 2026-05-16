@@ -117,21 +117,12 @@ Plotting transformer loading (as a percentage of transformer capacity). Note, x-
 Transformer loading increases as DG increases. All cases are under 100% (i.e. no transformer overloading).
 
 #### Short-Circuit Analysis
-<img src="outputs/short_circuit_analysis/short_circuit_off.png" width="100%">
-Bus   ikss_ka
-0  23.149570
-1  10.236779
-2   6.300460
-3   4.526206
-4   3.202010
+<img src="outputs/short_circuit_analysis/sc_gen_off.png" width="100%">
+<img src="outputs/short_circuit_analysis/sc_off.png" width="50%">
 
-<img src="outputs/short_circuit_analysis/short_circuit_on.png" width="100%">
 
-Bus  ikss_ka
-0  23.155126
-1  10.242334
-2   6.306016
-3   4.531762
-4   3.346348
+<img src="outputs/short_circuit_analysis/sc_gen_on.png" width="50%">
+<img src="outputs/short_circuit_analysis/sc_on.png" width="100%">
+
 
 The inclusion of the 100 kW micro-hydro generator results in a small localized increase in short-circuit current at the point of interconnection, while having negligible impact on upstream fault levels due to the dominance of the utility grid impedance.
