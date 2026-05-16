@@ -66,11 +66,11 @@ Simulations performed in python using [pandapower](https://pandapower.readthedoc
 
 ### Outputs
 
-Single Line Diagram
+#### Single Line Diagram
 
 <img src="outputs/single-line-diagram.png" width="100%">
 
-Voltage Profiles
+#### Voltage Profiles
 
 Plotting the normalized voltage against the Bus number.
 <img src="outputs/voltage_profile/voltage_profile_gen_off.png" width="100%">
@@ -81,7 +81,7 @@ Plotting the normalized voltage against the Bus number.
 Baseling feeder drop demonstrates voltage dropping due to line impedance as current flows from grid to loads. Distributed generation (DG) injection improves voltage downstream (more flat). Rate limits of 0.97-1.03 pu respected.
 
 
-Voltage Angles
+#### Voltage Angles
 
 Plotting the voltage angle against the Bus number. Angle difference drives real power flow (higher to lower).
 <img src="outputs/voltage_angle/voltage_angle_gen_off.png" width="100%">
@@ -91,11 +91,13 @@ Plotting the voltage angle against the Bus number. Angle difference drives real 
 
 A localized voltage angle deviation of 2.36° at the generator bus (at 100% generation) suggests a concentrated real power injection point with limited feeder impedance, resulting in a sharp phase shift localized at the point of generation. While not indicative of instability, this behavior suggests the model is highly idealized and may underrepresent feeder impedance effects
 
-Line Loading
+#### Line Loading
+
 Plotting line loading (as a percentage of thermal rating) against line number
 * 0: Between Slack and bus1
 * 1: Between bus1 and bus2
 * 2: Between bus2 and bus3
+  
 <img src="outputs/line_loading/line_loading_gen_off.png" width="100%">
 <img src="outputs/line_loading/line_loading_gen_30.png" width="100%">
 <img src="outputs/line_loading/line_loading_gen_60.png" width="100%">
@@ -103,7 +105,7 @@ Plotting line loading (as a percentage of thermal rating) against line number
 
 Highest loading occurs near substation because upstream lines carry all load. With injection of DG, upstream loading drops. All cases under 100% (i.e. no overloading).
 
-Transfomer Loading
+#### Transfomer Loading
 
 Plotting transformer loading (as a percentage of transformer capacity). X-axis is irrelavant (only one transformer present)
 
