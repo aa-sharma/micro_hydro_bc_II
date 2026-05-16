@@ -72,31 +72,44 @@ Single Line Diagram
 
 Voltage Profiles
 
+Plotting the normalized voltage against the Bus number.
 <img src="outputs/voltage_profile/voltage_profile_gen_off.png" width="100%">
 <img src="outputs/voltage_profile/voltage_profile_gen_30.png" width="100%">
 <img src="outputs/voltage_profile/voltage_profile_gen_60.png" width="100%">
 <img src="outputs/voltage_profile/voltage_profile_gen_100.png" width="100%">
 
+Baseling feeder drop demonstrates voltage dropping due to line impedance as current flows from grid to loads. Distributed generation (DG) injection improves voltage downstream (more flat). Rate limits of 0.97-1.03 pu respected.
+
 
 Voltage Angles
 
+Plotting the voltage angle against the Bus number. Angle difference drives real power flow (higher to lower).
 <img src="outputs/voltage_angle/voltage_angle_gen_off.png" width="100%">
 <img src="outputs/voltage_angle/voltage_angle_gen_30.png" width="100%">
 <img src="outputs/voltage_angle/voltage_angle_gen_60.png" width="100%">
 <img src="outputs/voltage_angle/voltage_angle_gen_100.png" width="100%">
 
-Line Loading
+A localized voltage angle deviation of 2.36° at the generator bus (at 100% generation) suggests a concentrated real power injection point with limited feeder impedance, resulting in a sharp phase shift localized at the point of generation. While not indicative of instability, this behavior suggests the model is highly idealized and may underrepresent feeder impedance effects
 
+Line Loading
+Plotting line loading (as a percentage of thermal rating) against line number
+* 0: Between Slack and bus1
+* 1: Between bus1 and bus2
+* 2: Between bus2 and bus3
 <img src="outputs/line_loading/line_loading_gen_off.png" width="100%">
 <img src="outputs/line_loading/line_loading_gen_30.png" width="100%">
 <img src="outputs/line_loading/line_loading_gen_60.png" width="100%">
 <img src="outputs/line_loading/line_loading_gen_100.png" width="100%">
 
+Highest loading occurs near substation because upstream lines carry all load. With injection of DG, upstream loading drops. All cases under 100% (i.e. no overloading).
 
 Transfomer Loading
+
+Plotting transformer loading (as a percentage of transformer capacity). X-axis is irrelavant (only one transformer present)
+
 <img src="outputs/transformer_loading/transformer_loading_gen_off.png" width="100%">
 <img src="outputs/transformer_loading/trafo_loading_gen_30.png" width="100%">
 <img src="outputs/transformer_loading/transfo_loading_gen_60.png" width="100%">
 <img src="outputs/transformer_loading/trafo_loading_gen_100.png" width="100%">
 
-
+Transformer loading increases as DG increases. All cases are under 100% (i.e. no transformer overloading).
