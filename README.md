@@ -87,10 +87,10 @@ Voltage Angles
 
 Line Loading
 
-<img src="outputs/line_loading/line_loading_gen_off" width="100%">
-<img src="outputs/line_loading/line_loading_gen_30" width="100%">
-<img src="outputs/line_loading/line_loading_gen_60" width="100%">
-<img src="outputs/line_loading/line_loading_gen_100" width="100%">
+<img src="outputs/line_loading/line_loading_gen_off.png" width="100%">
+<img src="outputs/line_loading/line_loading_gen_30.png" width="100%">
+<img src="outputs/line_loading/line_loading_gen_60.png" width="100%">
+<img src="outputs/line_loading/line_loading_gen_100.png" width="100%">
 
 
 Transfomer Loading
