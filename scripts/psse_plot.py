@@ -41,13 +41,14 @@ def plot_voltage_profiles(results, case):
         marker='o',
         label="Case"
     )
-    plt.axhline(1.05, color='red', linestyle='--', label='Upper Limit')
-    plt.axhline(0.95, color='red', linestyle='--', label='Lower Limit')
+    plt.axhline(1.03, color='red', linestyle='--', label='Upper Limit')
+    plt.axhline(0.97, color='red', linestyle='--', label='Lower Limit')
     plt.title(f"Bus Voltage Profile | {case}")
     plt.xlabel("Bus Number")
     plt.ylabel("Voltage (p.u.)")
     plt.xticks(range(len(results["voltages"])))
-    plt.ylim(0.999000, 1.0001)
+    # plt.ylim(0.999000, 1.0001)
+    plt.ylim(0.95, 1.05)        # acceptable operating range
     plt.legend()
     plt.tight_layout()
     plt.show()
