@@ -68,7 +68,7 @@ Simulations performed in python using [pandapower](https://pandapower.readthedoc
 
 Single Line Diagram
 
-<img src="outputs/single-line-diagram.png" width="75%">
+<img src="outputs/single-line-diagram.png" width="100%">
 
 Voltage Profiles
 
@@ -80,8 +80,23 @@ Voltage Profiles
 
 Voltage Angles
 
+<img src="outputs/voltage_angle/voltage_angle_gen_off.png" width="100%">
+<img src="outputs/voltage_angle/voltage_angle_gen_30.png" width="100%">
+<img src="outputs/voltage_angle/voltage_angle_gen_60.png" width="100%">
+<img src="outputs/voltage_angle/voltage_angle_gen_100.png" width="100%">
+
 Line Loading
 
+<img src="outputs/line_loading/line_loading_gen_off" width="100%">
+<img src="outputs/line_loading/line_loading_gen_30" width="100%">
+<img src="outputs/line_loading/line_loading_gen_60" width="100%">
+<img src="outputs/line_loading/line_loading_gen_100" width="100%">
+
+
 Transfomer Loading
+<img src="outputs/transformer_loading/transformer_loading_gen_off.png" width="100%">
+<img src="outputs/transformer_loading/trafo_loading_gen_30.png" width="100%">
+<img src="outputs/transformer_loading/transfo_loading_gen_60.png" width="100%">
+<img src="outputs/transformer_loading/trafo_loading_gen_100.png" width="100%">
 
 
