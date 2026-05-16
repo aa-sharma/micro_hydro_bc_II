@@ -39,6 +39,8 @@ The following attributes are assumed for the 100kW micro-hydro power plant:
 2. Real Power Loss Minimization: Identifying and reducing energy losses in transmission lines and transformers.
 3. System Optimization: Optimizing the capital investment by optimally selecting the equipment ratings and their configurations
 
+The Newton-Raphson method is used by the program in this study.
+
 <img src="power-flow-problem-table.png" width="75%">
 
 <img src="power-flow-equations1.png" width="75%">
