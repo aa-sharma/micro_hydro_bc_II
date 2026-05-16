@@ -2,10 +2,10 @@ Slack (External Grid, 12.47 kV swing bus)
         │
         │  (Line impedance)
         ▼
-Bus 1 ───────── radial feeder ───────── Bus 4
+Bus 1 ───────── radial feeder ───────── Bus 3
         │             │
         ▼             ▼
-     Bus 2        Bus 3 (DG injection point)
+     Bus 2         (DG injection point)
                       │
 		  Step-up Transformer
 		  0.48 kV / 12.47 kV
