@@ -31,7 +31,7 @@ The following attributes are assumed for the 100kW micro-hydro power plant:
 
 ## Areas of Study
 1. Power flow (Voltage profile)
-2. Reverse power flow
+2. Reverse power flow check
 3. Transformer behaviour
 4. Short-circuit analysis
 
