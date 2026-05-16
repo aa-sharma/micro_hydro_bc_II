@@ -126,3 +126,9 @@ Transformer loading increases as DG increases. All cases are under 100% (i.e. no
 
 
 The inclusion of the 100 kW micro-hydro generator results in a small localized increase in short-circuit current at the point of interconnection, while having negligible impact on upstream fault levels due to the dominance of the utility grid impedance.
+
+
+## Conclusion
+This study demonstrated the successful modelling and analysis of a conceptual 100 kW micro-hydropower plant interconnected to a 12.47 kV radial distribution feeder using pandapower. Under all simulated operating conditions, the distributed generator improved downstream voltage support, reduced upstream feeder loading, and remained within acceptable transformer loading limits. Short-circuit analysis showed only a localized increase in fault current contribution near the point of interconnection, with negligible impact on upstream fault levels due to the dominant utility grid.
+
+Overall, the results suggest that a 100 kW micro-hydropower generator can be feasibly integrated into a distribution feeder of this type, provided standard interconnection requirements, transformer sizing, and protection considerations are satisfied. The study also demonstrates the usefulness of open-source tools such as pandapower for preliminary distributed generation planning and interconnection analysis.
