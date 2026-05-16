@@ -107,7 +107,7 @@ Highest loading occurs near substation because upstream lines carry all load. Wi
 
 #### Transfomer Loading
 
-Plotting transformer loading (as a percentage of transformer capacity). X-axis is irrelavant (only one transformer present)
+Plotting transformer loading (as a percentage of transformer capacity). Note, x-axis value is irrelavant (only one transformer present)
 
 <img src="outputs/transformer_loading/transformer_loading_gen_off.png" width="100%">
 <img src="outputs/transformer_loading/trafo_loading_gen_30.png" width="100%">
