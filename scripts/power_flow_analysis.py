@@ -9,60 +9,46 @@ from power_flow_network import PowerFlowNetwork
 from pandapower import shortcircuit
 
 
-def power_flow_generator_off():
-    pfn_OFF = PowerFlowNetwork()
-    pfn_OFF.full_config_setup()
-    pfn_OFF.print_network_details()
-    pfn_OFF.plot_network()
-    pfn_OFF.net.sgen["in_service"] = False
+def run_case(name, gen_power, reverse_power_check=True):
+    # Setup network
+    pfn = PowerFlowNetwork()
+    gen = pfn.full_config_setup()
+    pfn.print_network_details()
+    pfn.plot_network()
+    pfn.net.sgen.at[gen, "p_mw"] = gen_power
+
+    # Run simulation
     pp.runpp(
-        pfn_OFF.net,
+        pfn.net,
         algorithm="nr",     # Newton-Raphson
-        init="flat",
         max_iteration=30,
-        enforce_q_lims=True
     )
-    pfn_OFF.print_output_summary()
-    pfn_OFF.plot_voltage(title="Bus Voltage Profile (Generator OFF)")
+
+    # Print summary
+    pfn.print_power_flow_summary(name)
+
+    if reverse_power_check:
+        # Reverse power check
+        pfn.reverse_power_check()
+
+    # return {
+    #     "voltages": pfn.net.res_bus.vm_pu.copy(),
+    #     "angles": pfn.net.res_bus.va_degree.copy()
+    # }
+    return pfn
 
 
-def power_flow_generator_on():
-    """Base Case"""
-    pfn_ON = PowerFlowNetwork()
-    pfn_ON.full_config_setup()
-    pfn_ON.print_network_details()
-    pfn_ON.net.sgen["in_service"] = True
-    pp.runpp(
-        pfn_ON.net,
-        algorithm="nr",     # Newton-Raphson
-        init="flat",
-        max_iteration=30,
-        enforce_q_lims=True
-    )
-    pfn_ON.print_output_summary()
-    pfn_ON.plot_voltage(title="Bus Voltage Profile (Generator ON)")
+def power_flow_generator_off(name="CASE 1: Generator OFF"):
+    pfn = run_case(name=name, gen_power=0.0)
 
 
-def generator_sensitivity():
-    # Generator Sensitivity Analysis
-    # Vary output
-    # TODO: plot Bus 4 voltage vs generation
-    pfn_gen = PowerFlowNetwork()
-    pfn_gen.full_config_setup()
-    outputs = [0, 0.03, 0.06, 0.1]
-    results = []
-    for p in outputs:
-        pfn_gen.net.sgen.at[0, "p_mw"] = p
-        pp.runpp(pfn_gen.net)
-        results.append(pfn_gen.net.res_bus.vm_pu.copy())
-    print(results)
+def power_flow_generator_variable(name="CASE 2: Generator 30%", gen_power=0.03):
+    pfn = run_case(name=name, gen_power=gen_power)
+    
 
-
-def reverse_power_flow_check():
-    # transformer loading:
-    pfn_rv = PowerFlowNetwork()
-    pfn_rv.full_config_setup()
-    pfn_rv.res_trafo.loading_percent()
+def power_flow_generator_full(name="CASE 4: Generator ON (100%)"):
+    pfn = run_case(name=name, gen_power=0.1)
+    pfn.plot_voltage(title=f"Bus Voltage Profile | {name}")
 
 
 def short_circuit_analysis():
@@ -73,7 +59,11 @@ def short_circuit_analysis():
     """
     pfn_sc = PowerFlowNetwork()
     pfn_sc.full_config_setup()
-    shortcircuit.calc_sc(pfn_sc.net, fault='3ph')
+    print("\nRunning short circuit study...")
+    shortcircuit.calc_sc(pfn_sc.net)
+    print("\nShort Circuit Results")
+    print(pfn_sc.net.res_bus_sc[["ikss_ka"]])
+
     # TODO: DG OFF vs ON fault current
 
 
@@ -81,7 +71,7 @@ def short_circuit_analysis():
 
 if __name__ == "__main__":
     power_flow_generator_off()
-    # power_flow_generator_on()
-    # generator_sensitivity()
-    # reverse_power_flow_check()
-    # short_circuit_analysis()
+    power_flow_generator_variable(name="CASE 2: Generator 30%", gen_power=0.03)
+    power_flow_generator_variable(name="CASE 3: Generator 60%", gen_power=0.06)
+    power_flow_generator_full()
+    short_circuit_analysis()

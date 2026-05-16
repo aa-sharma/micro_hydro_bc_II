@@ -29,62 +29,70 @@ class PowerFlowNetwork:
                         |
                     [Bus 2]
                         |
-                    [Bus 3] ---- (Micro-hydro 100 kW)
-                        |
-                    [Bus 4]
+                    [Bus 3] -- (Transformer 0.48kV / 12.47kV) -- (Micro-hydro 100 kW)
         """
-        self.net = pp.create_empty_network()
+        # Initialize network
+        # reference apparent power for per unit system (sn_mva) = 1.0, frequency (f) = 60Hz
+        self.net = pp.create_empty_network(name="microhydro_southwest_BC", sn_mva=1.0, f_hz=60)
 
         # Bus
-        self.bus0 = pp.create_bus(self.net, vn_kv=VN_KV, name="Slack Bus")
-        self.bus1 = pp.create_bus(self.net, vn_kv=VN_KV, name="Bus 1")
-        self.bus2 = pp.create_bus(self.net, vn_kv=VN_KV, name="Bus 2")
-        self.bus3 = pp.create_bus(self.net, vn_kv=VN_KV, name="Bus 3 (DG)")
-        self.bus4 = pp.create_bus(self.net, vn_kv=VN_KV, name="Bus 4")
-                
+        self.bus_slack = pp.create_bus(self.net, vn_kv=12.47, name="Slack Bus")
+        self.bus_1 = pp.create_bus(self.net, vn_kv=12.47, name="Load Bus 1")
+        self.bus_2 = pp.create_bus(self.net, vn_kv=12.47, name="Load Bus 2")
+        self.bus_3 = pp.create_bus(self.net, vn_kv=12.47, name="Load Bus 3")
+        self.bus_lv = pp.create_bus(self.net, vn_kv=0.48, name="Hydro Generator LV")
+
         # Slack (grid)
-        pp.create_ext_grid(self.net, self.bus0, vm_pu=VM_PU, va_degree=0)
+        pp.create_ext_grid(
+            self.net,
+            self.bus_slack,
+            vm_pu=1.0,              # voltage at slack node
+            va_degree=0,            # voltage angle at the slack node in degrees
+            s_sc_max_mva=500,       # maximal short circuit apparent power
+            rx_max=0.1,             # maximal R/X-ratio
+            name="BC Hydro Grid"
+        )
 
         # Distribution Lines
-        pp.create_line_from_parameters(self.net, self.bus0, self.bus1, 1.0,
+        pp.create_line_from_parameters(self.net, self.bus_slack, self.bus_1, 1.0,
                                        R_OHM_PER_KM, X_OHM_PER_KM, C_NF_PER_KM, MAX_I_KA)
-        pp.create_line_from_parameters(self.net, self.bus1, self.bus2, 1.0,
+        pp.create_line_from_parameters(self.net, self.bus_1, self.bus_2, 1.0,
                                        R_OHM_PER_KM, X_OHM_PER_KM, C_NF_PER_KM, MAX_I_KA)
-        pp.create_line_from_parameters(self.net, self.bus2, self.bus3, 1.0,
+        pp.create_line_from_parameters(self.net, self.bus_2, self.bus_3, 1.0,
                                        R_OHM_PER_KM, X_OHM_PER_KM, C_NF_PER_KM, MAX_I_KA)
-        pp.create_line_from_parameters(self.net, self.bus3, self.bus4, 1.0,
-                                       R_OHM_PER_KM, X_OHM_PER_KM, C_NF_PER_KM, MAX_I_KA)
-
-        # Transformer
-        # pp.create_transformer_from_parameters(
-        #     self.net,
-        #     hv_bus=bus_slack,
-        #     lv_bus=bus_lv,
-        #     sn_mva=0.5,
-        #     vn_hv_kv=25,
-        #     vn_lv_kv=0.4,
-        #     vkr_percent=1.0,
-        #     vk_percent=6.0,
-        #     pfe_kw=0.5,
-        #     i0_percent=0.1,
-        #     name="25kV/400V Transformer"
-        # )
 
         # Loads
-        pp.create_load(self.net, self.bus2, p_mw=0.04, q_mvar=0.015)
-        pp.create_load(self.net, self.bus3, p_mw=0.03, q_mvar=0.01)
-        pp.create_load(self.net, self.bus4, p_mw=0.05, q_mvar=0.02)
+        pp.create_load(self.net, self.bus_1, p_mw=0.04, q_mvar=0.015, name="Load 1")
+        pp.create_load(self.net, self.bus_2, p_mw=0.03, q_mvar=0.01, name="Load 2")
+        pp.create_load(self.net, self.bus_3, p_mw=0.05, q_mvar=0.02, name="Load3")
+
+        # Transformer (Step-up)
+        # 0.48kV -> 12.47kV
+        pp.create_transformer_from_parameters(
+            self.net,
+            hv_bus=self.bus_3,              # bus on the high-voltage side
+            lv_bus=self.bus_lv,             # bus on the low-voltage side
+            sn_mva=0.15,                    # rated apparent power
+            vn_hv_kv=12.47,                 # rated voltage on high voltage side
+            vn_lv_kv=0.48,                  # rated voltage on low voltage side
+            vk_percent=6,                   # relative short-circuit voltage
+            vkr_percent=1.2,                # real part of relative short-circuit voltage
+            pfe_kw=0.5,                     # iron losses in kW
+            i0_percent=0.1,                 # open loop losses in percent of rated current
+            shift_degree=0,                 # angle shift over the transformer
+            name="Hydro Step-Up Transformer"
+        )
 
         # 100kW Micro-hydro generator
-        pp.create_sgen(
+        gen = pp.create_sgen(
             self.net,
-            self.bus3,
-            p_mw=0.1,
-            q_mvar=0.0,
-            min_q_mvar=-0.05,
-            max_q_mvar=0.05,
+            self.bus_lv,
+            p_mw=0.1,                      # real power of the generator
+            q_mvar=-0.02,                  # reactive power of the sgen
             name="Micro-Hydro 100kW Generator"
         )
+
+        return gen
 
     def print_network_details(self):
         print(f"System Details")
@@ -95,10 +103,31 @@ class PowerFlowNetwork:
         print(f"========Load========\n{self.net.load}\n")
         print(f"========Generator========\n{self.net.sgen}\n")
 
-    def print_output_summary(self):
-        print(f"Bus voltages\n{self.net.res_bus.vm_pu}\n")
-        print(f"Line Loading\n{self.net.res_line.loading_percent}\n")
-        print(f"Transformer\n{self.net.res_trafo.loading_percent}\n")
+    def print_power_flow_summary(self, name):
+        print("\n" + "=" * 60)
+        print(name)
+        print("=" * 60)
+        print("\nBus Voltages")
+        print(self.net.res_bus[["vm_pu", "va_degree"]])
+        print("\nLine Loading")
+        print(self.net.res_line[["loading_percent", "p_from_mw"]])
+        print("\nTransformer")
+        print(self.net.res_trafo[["loading_percent", "p_hv_mw", "p_lv_mw"]])
+
+    def reverse_power_check(self):
+        """
+        Interpretation:
+        positive = importing from grid
+        negative = exporting to grid
+        If generation > local load, reverse power occurs.
+        """
+        p_to_grid = self.net.res_ext_grid["p_mw"].iloc[0]
+        print(f"\nGrid import (+) / export (-): {p_to_grid:.4f} MW")
+        if p_to_grid < 0:
+            print("Reverse power flow detected")
+        else:
+            print("No reverse power flow detected ")
+
 
     def plot_voltage(self,
                      title='Bus Voltage Profile',
@@ -142,16 +171,17 @@ class PowerFlowNetwork:
         plt.show()
 
     def plot_network(self):
-         """Plot network
-         https://pandapower.readthedocs.io/en/latest/plotting/matplotlib/simple_plot.html"""
-         pp.plotting.simple_plot(self.net,
-                                 line_width=2,
-                                 bus_size=2,
-                                 ext_grid_size=5,
-                                 trafo_size=2,
-                                 plot_loads=True,
-                                 plot_gens=True,
-                                 plot_sgens=True,
-                                 load_size=1,
-                                 gen_size=2,
-                                 sgen_size=5)
+        """Plot network
+        https://pandapower.readthedocs.io/en/latest/plotting/matplotlib/simple_plot.html"""
+        pp.plotting.simple_plot(self.net,
+                                line_width=2,
+                                bus_size=2,
+                                ext_grid_size=5,
+                                trafo_size=2,
+                                plot_loads=True,
+                                plot_gens=True,
+                                plot_sgens=True,
+                                load_size=1,
+                                gen_size=2,
+                                sgen_size=5)
+
