@@ -78,7 +78,7 @@ Plotting the normalized voltage against the Bus number.
 <img src="outputs/voltage_profile/voltage_profile_gen_60.png" width="100%">
 <img src="outputs/voltage_profile/voltage_profile_gen_100.png" width="100%">
 
-Baseling feeder drop demonstrates voltage dropping due to line impedance as current flows from grid to loads. Distributed generation (DG) injection improves voltage downstream (more flat). Rate limits of 0.97-1.03 pu respected.
+Baseline feeder drop demonstrates voltage dropping due to line impedance as current flows from grid to loads. Distributed generation (DG) injection improves voltage downstream (more flat). Rate limits of 0.97-1.03 pu respected.
 
 
 #### Voltage Angles
