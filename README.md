@@ -31,9 +31,10 @@ The following attributes are assumed for the 100kW micro-hydro power plant:
 
 ## Areas of Study
 1. Power flow (Voltage profile)
-2. Reverse power flow check
-3. Transformer behaviour
-4. Short-circuit analysis
+2. Line Loading
+3. Transformer Loading
+4. Reverse power flow check
+5. Short-circuit analysis
 
 ## Power Flow
 "Power Flow Analysis is considered the backbone of modern power systems because it plays a vital role in ensuring the grid's reliable, efficient, and safe operation. By providing a detailed assessment of power Generation, Transmission and distribution, Load Flow Analysis helps engineers optimize system performance, maintain voltage stability, and reduce power losses. It also serves as a foundation for other advanced power system studies, such as harmonic analysis and stability assessments."
