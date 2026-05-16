@@ -118,11 +118,11 @@ Transformer loading increases as DG increases. All cases are under 100% (i.e. no
 
 #### Short-Circuit Analysis
 <img src="outputs/short_circuit_analysis/sc_gen_off.png" width="100%">
-<img src="outputs/short_circuit_analysis/sc_off.png" width="50%">
+<img src="outputs/short_circuit_analysis/sc_off.png" width="20%">
 
 
-<img src="outputs/short_circuit_analysis/sc_gen_on.png" width="50%">
-<img src="outputs/short_circuit_analysis/sc_on.png" width="100%">
+<img src="outputs/short_circuit_analysis/sc_gen_on.png" width="100%">
+<img src="outputs/short_circuit_analysis/sc_on.png" width="20%">
 
 
 The inclusion of the 100 kW micro-hydro generator results in a small localized increase in short-circuit current at the point of interconnection, while having negligible impact on upstream fault levels due to the dominance of the utility grid impedance.
