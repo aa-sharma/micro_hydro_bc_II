@@ -94,7 +94,7 @@ def config_network_details():
 if __name__ == "__main__":
     config_network_details()
     power_flow_generator_off()
-    # power_flow_generator_variable(name="CASE 2: Generator 30%", gen_power=0.03)
-    # power_flow_generator_variable(name="CASE 3: Generator 60%", gen_power=0.06)
-    # power_flow_generator_full()
+    power_flow_generator_variable(name="CASE 2: Generator 30%", gen_power=0.03)
+    power_flow_generator_variable(name="CASE 3: Generator 60%", gen_power=0.06)
+    power_flow_generator_full()
     # short_circuit_analysis()
