@@ -72,6 +72,12 @@ Single Line Diagram
 
 Voltage Profiles
 
+<img src="outputs/voltage_profile/voltage_profile_gen_off.png" width="75%">
+<img src="outputs/voltage_profile/voltage_profile_gen_30.png" width="75%">
+<img src="outputs/voltage_profile/voltage_profile_gen_60.png" width="75%">
+<img src="outputs/voltage_profile/voltage_profile_gen_100.png" width="75%">
+
+
 Voltage Angles
 
 Line Loading
