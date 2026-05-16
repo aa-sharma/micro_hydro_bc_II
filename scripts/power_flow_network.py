@@ -84,15 +84,15 @@ class PowerFlowNetwork:
         )
 
         # 100kW Micro-hydro generator
-        gen = pp.create_sgen(
+        self.gen = pp.create_sgen(
             self.net,
             self.bus_lv,
             p_mw=0.1,                      # real power of the generator
             q_mvar=-0.02,                  # reactive power of the sgen
+            sn_mva=0.12,                   # nominal power of the sgen
+            k=1.0,                         # ratio of short circuit current to nominal current
             name="Micro-Hydro 100kW Generator"
         )
-
-        return gen
 
     def print_network_details(self):
         print(f"System Details")

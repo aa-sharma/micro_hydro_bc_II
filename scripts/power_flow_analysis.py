@@ -8,12 +8,21 @@ import pandapower as pp
 from power_flow_network import PowerFlowNetwork
 from pandapower import shortcircuit
 import psse_plot
+import copy
+
+
+def config_network_details():
+    pfn = PowerFlowNetwork()
+    pfn.full_config_setup()
+    pfn.print_network_details()
+    psse_plot.plot_network(net=pfn.net)
+
 
 def run_case(name, gen_power, reverse_power_check=True):
     # Setup network
     pfn = PowerFlowNetwork()
-    gen = pfn.full_config_setup()
-    pfn.net.sgen.at[gen, "p_mw"] = gen_power
+    pfn.full_config_setup()
+    pfn.net.sgen.at[pfn.gen, "p_mw"] = gen_power
     # Run simulation
     pp.runpp(
         pfn.net,
@@ -68,7 +77,7 @@ def sweep_generator():
     pass
 
 
-def short_circuit_analysis():
+def short_circuit_gen_off():
     """
     Calculates minimal or maximal symmetrical short-circuit currents.
     The calculation is based on the method of the equivalent voltage source according to DIN/IEC EN 60909
@@ -76,19 +85,29 @@ def short_circuit_analysis():
     """
     pfn_sc = PowerFlowNetwork()
     pfn_sc.full_config_setup()
-    print("\nRunning short circuit study...")
+    pfn_sc.net.sgen.at[pfn_sc.gen, "in_service"] = False
+    print("\n=== OFF CASE ===")
     shortcircuit.calc_sc(pfn_sc.net)
     print("\nShort Circuit Results")
     print(pfn_sc.net.res_bus_sc[["ikss_ka"]])
-    psse_plot.plot_short_circuit(net=pfn_sc.net)
+    psse_plot.plot_short_circuit(pfn_sc.net, name="CASE Generator OFF")
 
 
-def config_network_details():
-    pfn = PowerFlowNetwork()
-    pfn.full_config_setup()
-    pfn.print_network_details()
-    psse_plot.plot_network(net=pfn.net)
-
+def short_circuit_gen_on():
+    """
+    Calculates minimal or maximal symmetrical short-circuit currents.
+    The calculation is based on the method of the equivalent voltage source according to DIN/IEC EN 60909
+    https://pandapower.readthedocs.io/en/latest/shortcircuit/run.html
+    """
+    pfn_sc = PowerFlowNetwork()
+    pfn_sc.full_config_setup()
+    pfn_sc.net.sgen.at[pfn_sc.gen, "in_service"] = True
+    pfn_sc.net.sgen.at[pfn_sc.gen, "p_mw"] = 0.1
+    print("\n=== ON CASE ===")
+    shortcircuit.calc_sc(pfn_sc.net)
+    print("\nShort Circuit Results")
+    print(pfn_sc.net.res_bus_sc[["ikss_ka"]])
+    psse_plot.plot_short_circuit(pfn_sc.net, name="CASE Generator ON")
 
 
 if __name__ == "__main__":
@@ -97,4 +116,5 @@ if __name__ == "__main__":
     power_flow_generator_variable(name="CASE 2: Generator 30%", gen_power=0.03)
     power_flow_generator_variable(name="CASE 3: Generator 60%", gen_power=0.06)
     power_flow_generator_full()
-    # short_circuit_analysis()
+    short_circuit_gen_off()
+    short_circuit_gen_on()

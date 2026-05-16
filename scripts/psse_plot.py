@@ -101,12 +101,26 @@ def plot_transformer_loading(net, case):
     plt.show()
 
 
-def plot_short_circuit(net, case):
+def plot_short_circuit(net, name=""):
     plt.figure()
     sc_vals = net.res_bus_sc["ikss_ka"]
     plt.bar(range(len(sc_vals)), sc_vals)
-    plt.title(f"Short Circuit Current | {case}")
+    plt.title(f"Short Circuit Current | {name}")
     plt.xlabel("Bus")
     plt.ylabel("Fault Current (kA)")
     plt.tight_layout()
+    plt.show()
+
+
+def plot_short_circuit_comparison(on_results, off_results):
+    plt.figure()
+
+    plt.plot(off_results.values, marker='o', label="Generator OFF")
+    plt.plot(on_results.values, marker='s', label="Generator ON")
+
+    plt.title("Short-Circuit Current Comparison")
+    plt.xlabel("Bus")
+    plt.ylabel("Ikss (kA)")
+    plt.legend()
+    plt.grid(True)
     plt.show()
