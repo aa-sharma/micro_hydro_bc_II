@@ -20,12 +20,13 @@ The grid integration loosely follows [BC Hydro's Distributed Generation Technica
 * Balanced 3-phase system
 * Harmonics are ignored
 
-### Generator Attributes
+### Generator & Transformer Attributes
 The following attributes are assumed for the 100kW micro-hydro power plant:
 * Power Rating: 100kW
 * Voltage: 480V (3-phase)
 * Frequency: 60Hz (synchronized with local BC Hydro grid standards)
 * Generator Type: Asynchronous generator
+* Step-up Transformer: 0.48kV -> 12.47kV, 150kVA
 
 
 ## Areas of Study
@@ -52,9 +53,12 @@ The Newton-Raphson method is used by the program in this study.
 
 Case 1: Generator OFF (baseline voltage profile)
 
-Case 2: Generator ON (100kW generation)
+Case 2: Partial generation (30% i.e. 30kW)
 
-Case 3: Partial generation (30%, 60%)
+Case 3: Partial generation (60% i.e. 60kW)
+
+Case 4: Generator ON (100% i.e. 100kW)
+
 
 
 ## Simulation
@@ -65,5 +69,13 @@ Simulations performed in python using [pandapower](https://pandapower.readthedoc
 Single Line Diagram
 
 <img src="outputs/single-line-diagram.png" width="75%">
+
+Voltage Profiles
+
+Voltage Angles
+
+Line Loading
+
+Transfomer Loading
 
 
