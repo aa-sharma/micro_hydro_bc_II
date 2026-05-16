@@ -1,0 +1,139 @@
+(.venv) aashna@Aashnas-MacBook-Pro scripts % python3 power_flow_analysis.py
+System Details
+========Bus========
+                 name  vn_kv type  zone  in_service   geo
+0           Slack Bus  12.47    b  None        True  None
+1          Load Bus 1  12.47    b  None        True  None
+2          Load Bus 2  12.47    b  None        True  None
+3          Load Bus 3  12.47    b  None        True  None
+4  Hydro Generator LV   0.48    b  None        True  None
+
+========Ext. Grid========
+            name  bus  vm_pu  va_degree  slack_weight  in_service  controllable  s_sc_max_mva  rx_max
+0  BC Hydro Grid    0    1.0        0.0           1.0        True         False         500.0     0.1
+
+========Line========
+   name std_type  from_bus  to_bus  length_km  r_ohm_per_km  x_ohm_per_km  c_nf_per_km  g_us_per_km  max_i_ka   df  parallel  type  in_service   geo
+0  None     None         0       1        1.0           0.4           0.3         10.0          0.0       0.2  1.0         1  None        True  None
+1  None     None         1       2        1.0           0.4           0.3         10.0          0.0       0.2  1.0         1  None        True  None
+2  None     None         2       3        1.0           0.4           0.3         10.0          0.0       0.2  1.0         1  None        True  None
+
+========Transformer========
+                        name std_type  hv_bus  lv_bus  sn_mva  vn_hv_kv  vn_lv_kv  vk_percent  ...  tap_pos  tap_changer_type  id_characteristic_table  tap_dependency_table parallel   df  in_service   oltc
+0  Hydro Step-Up Transformer     None       3       4    0.15     12.47      0.48         6.0  ...      NaN               NaN                     <NA>                 False        1  1.0        True  False
+
+[1 rows x 26 columns]
+
+========Load========
+     name  bus  p_mw  q_mvar  const_z_p_percent  const_i_p_percent  const_z_q_percent  const_i_q_percent  sn_mva  scaling  in_service type
+0  Load 1    1  0.04   0.015                0.0                0.0                0.0                0.0     NaN      1.0        True  wye
+1  Load 2    2  0.03   0.010                0.0                0.0                0.0                0.0     NaN      1.0        True  wye
+2   Load3    3  0.05   0.020                0.0                0.0                0.0                0.0     NaN      1.0        True  wye
+
+========Generator========
+                          name  bus  p_mw  q_mvar  min_q_mvar  max_q_mvar  sn_mva  ...  controllable  id_q_capability_characteristic  reactive_capability_curve  curve_style in_service  type current_source
+0  Micro-Hydro 100kW Generator    4   0.1   -0.02         NaN         NaN     NaN  ...         False                            <NA>                      False          NaN       True   wye           True
+
+[1 rows x 15 columns]
+
+No or insufficient geodata available --> Creating artificial coordinates. This may take some time
+
+============================================================
+CASE 1: Generator OFF
+============================================================
+
+Bus Voltages
+      vm_pu  va_degree
+0  1.000000   0.000000
+1  0.999567  -0.003937
+2  0.999264  -0.005577
+3  0.999057  -0.005286
+4  0.991128   0.081705
+
+Line Loading
+   loading_percent  p_from_mw
+0         3.161336   0.120609
+1         2.191033   0.080561
+2         1.495561   0.050538
+
+Transformer
+   loading_percent   p_hv_mw       p_lv_mw
+0         13.45705  0.000528  1.296536e-16
+
+Grid import (+) / export (-): 0.1206 MW
+No reverse power flow detected 
+
+============================================================
+CASE 2: Generator 30%
+============================================================
+
+Bus Voltages
+      vm_pu  va_degree
+0  1.000000   0.000000
+1  0.999643  -0.000576
+2  0.999417   0.001148
+3  0.999286   0.004803
+4  0.993704   0.769966
+
+Line Loading
+   loading_percent  p_from_mw
+0         2.573859   0.090651
+1         1.646668   0.050619
+2         1.052837   0.020606
+
+Transformer
+   loading_percent   p_hv_mw  p_lv_mw
+0        24.189305 -0.029399     0.03
+
+Grid import (+) / export (-): 0.0907 MW
+No reverse power flow detected 
+
+============================================================
+CASE 3: Generator 60%
+============================================================
+
+Bus Voltages
+      vm_pu  va_degree
+0  1.000000   0.000000
+1  0.999718   0.002873
+2  0.999566   0.008047
+3  0.999510   0.015152
+4  0.996123   1.455011
+
+Line Loading
+   loading_percent  p_from_mw
+0         2.068328   0.060851
+1         1.275492   0.020830
+2         0.985967  -0.009178
+
+Transformer
+   loading_percent   p_hv_mw  p_lv_mw
+0        42.327791 -0.059182     0.06
+
+Grid import (+) / export (-): 0.0609 MW
+No reverse power flow detected 
+
+============================================================
+CASE 4: Generator ON (100%)
+============================================================
+
+Bus Voltages
+      vm_pu  va_degree
+0  1.000000   0.000000
+1  0.999815   0.007607
+2  0.999760   0.017513
+3  0.999801   0.029350
+4  0.999110   2.364157
+
+Line Loading
+   loading_percent  p_from_mw
+0         1.648156   0.021361
+1         1.311685  -0.018652
+2         1.520175  -0.048660
+
+Transformer
+   loading_percent   p_hv_mw  p_lv_mw
+0        68.047456 -0.098671      0.1
+
+Grid import (+) / export (-): 0.0214 MW
+No reverse power flow detected 
