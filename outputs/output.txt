@@ -31,10 +31,10 @@ System Details
 2   Load3    3  0.05   0.020                0.0                0.0                0.0                0.0     NaN      1.0        True  wye
 
 ========Generator========
-                          name  bus  p_mw  q_mvar  min_q_mvar  max_q_mvar  sn_mva  ...  controllable  id_q_capability_characteristic  reactive_capability_curve  curve_style in_service  type current_source
-0  Micro-Hydro 100kW Generator    4   0.1   -0.02         NaN         NaN     NaN  ...         False                            <NA>                      False          NaN       True   wye           True
+                          name  bus  p_mw  q_mvar  min_q_mvar  max_q_mvar  sn_mva  ...  id_q_capability_characteristic  reactive_capability_curve  curve_style  in_service type  current_source    k
+0  Micro-Hydro 100kW Generator    4   0.1   -0.02         NaN         NaN    0.12  ...                            <NA>                      False          NaN        True  wye            True  1.0
 
-[1 rows x 15 columns]
+[1 rows x 16 columns]
 
 No or insufficient geodata available --> Creating artificial coordinates. This may take some time
 
@@ -137,3 +137,21 @@ Transformer
 
 Grid import (+) / export (-): 0.0214 MW
 No reverse power flow detected 
+
+=== OFF CASE ===
+Short Circuit Results
+     ikss_ka
+0  23.149570
+1  10.236779
+2   6.300460
+3   4.526206
+4   3.202010
+
+=== ON CASE ===
+Short Circuit Results
+     ikss_ka
+0  23.155126
+1  10.242334
+2   6.306016
+3   4.531762
+4   3.346348
